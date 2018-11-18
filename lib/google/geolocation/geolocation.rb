@@ -74,10 +74,10 @@ module Google
       _results = JSON.parse(response.body)
       _results = _results["results"]
       _results.map do |r|
-        address_components = r["address_components"].map { |a| Geolocation::Address.new(a["long_name"], a["short_name"], a["types"]) }
+        address_components = r["address_components"].map { |a| Address.new(a["long_name"], a["short_name"], a["types"]) }
         g = r["geometry"]
-        geometry = Geolocation::Geometry.new(g["bounds"], g["location"], g["location_type"], g["viewport"])
-        Geolocation::Result.new(address_components, r["formatted_address"], geometry, r["place_id"], r["types"])
+        geometry = Geometry.new(g["bounds"], g["location"], g["location_type"], g["viewport"])
+        Result.new(address_components, r["formatted_address"], geometry, r["place_id"], r["types"])
       end
     end
   end
