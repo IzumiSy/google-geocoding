@@ -1,7 +1,13 @@
 module Google
   module Geolocation
     class Configuration
-      attr_accessor :api_key
+      attr_accessor :api_key, :client
+
+      BASE_URL = "https://maps.googleapis.com/maps/api/geocode/json"
+
+      def initialize(client)
+        @client = Faraday.new(url: BASE_URL)
+      end
     end
 
     class << self
@@ -21,19 +27,17 @@ module Google
       request_url =
         case arg
         when String
-          "#{BASE_URL}address=#{arg}&key=#{self.config.api_key}"
+          "?address=#{arg}&key=#{self.config.api_key}"
         when LatLng
-          "#{BASE_URL}latlng=#{arg.latitude},#{arg.longitude}&key=#{self.config.api_key}"
+          "?latlng=#{arg.latitude},#{arg.longitude}&key=#{self.config.api_key}"
         else
           raise ArgumentError, "lookup method only accepts either String or LatLng"
         end
 
-      parse_response Faraday.get(request_url)
+      parse_response self.config.client.get(request_url)
     end
 
     private
-
-    BASE_URL = "https://maps.googleapis.com/maps/api/geocode/json?"
 
     class Result
       attr_reader :address_components, :formatted_address, :geometry, :place_id, :types
