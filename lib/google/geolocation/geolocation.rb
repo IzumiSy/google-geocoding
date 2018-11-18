@@ -18,10 +18,19 @@ module Google
 
     LatLng = Struct.new(:latitude, :longitude)
 
-    def lookup
-      #
-      # TODO need to implement here
-      #
+    # TODO needs better exception handling for Faraday using a custom middleware
+    def lookup(arg)
+      request_url =
+        case arg
+        when String
+          "#{BASE_URL}address=#{arg}&key=#{self.config.api_key}"
+        when LatLng
+          "#{BASE_URL}latlng=#{arg.latitude},#{arg.longitude}&key=#{self.config.api_key}"
+        else
+          raise ArgumentError, "lookup method only accepts either String or LatLng"
+        end
+
+      parse_response Faraday.get(request_url)
     end
 
     private
