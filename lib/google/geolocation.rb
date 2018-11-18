@@ -1,5 +1,6 @@
 require 'faraday'
 require 'json'
+require 'uri'
 
 module Google
   module Geolocation
@@ -33,7 +34,7 @@ module Google
         request_url =
           case arg
           when String
-            "?address=#{arg}&key=#{config.api_key}"
+            "?address=#{URI.escape(arg)}&key=#{config.api_key}"
           when LatLng
             "?latlng=#{arg.latitude},#{arg.longitude}&key=#{config.api_key}"
           else
