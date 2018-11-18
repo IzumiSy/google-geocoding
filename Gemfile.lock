@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    google_geolocation (0.1.0)
+    google-geolocation (0.1.0)
       faraday
 
 GEM
@@ -31,7 +31,7 @@ PLATFORMS
 
 DEPENDENCIES
   bundler (~> 1.16)
-  google_geolocation!
+  google-geolocation!
   rake (~> 10.0)
   rspec (~> 3.0)
 

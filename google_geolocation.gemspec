@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = %q{Google Geolocation API wrapper}
   spec.description   = %q{Google Geolocation API wrapper which provides finder methods for longitude, latitude to address}
-  spec.homepage      = "https://github.com/IzumiSy/google_geolocation"
+  spec.homepage      = "https://github.com/IzumiSy/google-geolocation"
   spec.license       = "MIT"
 
   # Specify which files should be added to the gem when it is released.
