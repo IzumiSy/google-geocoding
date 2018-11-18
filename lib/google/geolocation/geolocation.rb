@@ -1,4 +1,4 @@
-require "google_geolocation/version"
+require "version"
 
 module Google
   module Geolocation

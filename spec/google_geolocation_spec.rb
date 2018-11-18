@@ -1,6 +1,6 @@
-RSpec.describe GoogleGeolocation do
+RSpec.describe Google::Geolocation do
   it "has a version number" do
-    expect(GoogleGeolocation::VERSION).not_to be nil
+    expect(Google::Geolocation::VERSION).not_to be nil
   end
 
   it "does something useful" do

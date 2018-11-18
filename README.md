@@ -3,20 +3,9 @@
 TODO
 
 ## Installation
-
-Add this line to your application's Gemfile:
-
 ```ruby
-gem 'google_geolocation'
+gem 'google-geolocation'
 ```
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install google_geolocation
 
 ## Usage
 

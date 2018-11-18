@@ -3,7 +3,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require "google/geolocation/version"
 
 Gem::Specification.new do |spec|
-  spec.name          = "google_geolocation"
+  spec.name          = "google-geolocation"
   spec.version       = Google::Geolocation::VERSION
   spec.authors       = ["IzumiSy"]
   spec.email         = ["beetle-noise@gmx.com"]
