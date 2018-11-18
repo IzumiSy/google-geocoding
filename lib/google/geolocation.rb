@@ -11,6 +11,10 @@ module Google
       end
     end
 
+    LatLng = Struct.new(:latitude, :longitude)
+
+    class RequestError < StandardError; end
+
     class << self
       BASE_URL = 'https://maps.googleapis.com/maps/api/geocode/json'
 
@@ -21,8 +25,6 @@ module Google
       def configure(&block)
         yield(config) if block_given?
       end
-
-      LatLng = Struct.new(:latitude, :longitude)
 
       # TODO needs better exception handling for Faraday using a custom middleware
       def lookup(arg)
@@ -77,13 +79,18 @@ module Google
       end
 
       def parse_response(response)
-        _results = JSON.parse(response.body)
-        _results = _results['results']
-        _results.map do |r|
-          address_components = r['address_components'].map { |a| Address.new(a['long_name'], a['short_name'], a['types']) }
-          g = r['geometry']
+        jsonified_body = JSON.parse(response.body)
+
+        raise RequestError, jsonified_body['error_message'] if jsonified_body['status'] == 'REQUEST_DENIED'
+
+        results = jsonified_body['results']
+        results.map do |result|
+          address_components = result['address_components'].map do |address|
+            Address.new(address['long_name'], address['short_name'], address['types'])
+          end
+          g = result['geometry']
           geometry = Geometry.new(g['bounds'], g['location'], g['location_type'], g['viewport'])
-          Result.new(address_components, r['formatted_address'], geometry, r['place_id'], r['types'])
+          Result.new(address_components, result['formatted_address'], geometry, result['place_id'], result['types'])
         end
       end
     end
