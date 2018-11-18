@@ -3,7 +3,7 @@ require 'json'
 require 'uri'
 
 module Google
-  module Geolocation
+  module Geocoding
     class Configuration
       attr_accessor :api_key, :client
 

@@ -1,8 +1,8 @@
 require 'faraday'
 
-RSpec.describe Google::Geolocation do
+RSpec.describe Google::Geocoding do
   it 'has a version number' do
-    expect(Google::Geolocation::VERSION).not_to be nil
+    expect(Google::Geocoding::VERSION).not_to be nil
   end
 
   let(:mocked_faraday) do
@@ -22,18 +22,18 @@ RSpec.describe Google::Geolocation do
   end
 
   before do
-    Google::Geolocation.configure do |c|
+    Google::Geocoding.configure do |c|
       c.api_key = 'test_apikey'
       c.client = mocked_faraday
     end
   end
 
   it 'returns response looked up with address' do
-    Google::Geolocation.lookup('unique test address')
+    Google::Geocoding.lookup('unique test address')
   end
 
   it 'returns response looked up with latitude and longitude' do
-    latlng = Google::Geolocation::LatLng.new(0.123, 0.123)
-    Google::Geolocation.lookup(latlng)
+    latlng = Google::Geocoding::LatLng.new(0.123, 0.123)
+    Google::Geocoding.lookup(latlng)
   end
 end

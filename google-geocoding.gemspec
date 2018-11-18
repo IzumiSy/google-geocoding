@@ -1,16 +1,16 @@
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'google/geolocation/version'
+require 'google/geocoding/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = 'google-geolocation'
-  spec.version       = Google::Geolocation::VERSION
+  spec.name          = 'google-geocoding'
+  spec.version       = Google::Geocoding::VERSION
   spec.authors       = ['IzumiSy']
   spec.email         = ['beetle-noise@gmx.com']
 
-  spec.summary       = %q{Google Geolocation API wrapper}
-  spec.description   = %q{Google Geolocation API wrapper which provides finder methods for longitude, latitude to address}
-  spec.homepage      = 'https://github.com/IzumiSy/google-geolocation'
+  spec.summary       = %q{Google Geocoding API wrapper}
+  spec.description   = %q{Google Geocoding API wrapper which provides finder methods for longitude, latitude to address}
+  spec.homepage      = 'https://github.com/IzumiSy/google-geocoding'
   spec.license       = 'MIT'
 
   # Specify which files should be added to the gem when it is released.
