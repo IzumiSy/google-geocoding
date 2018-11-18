@@ -1,5 +1,3 @@
-require "version"
-
 module Google
   module Geolocation
     class Configuration
