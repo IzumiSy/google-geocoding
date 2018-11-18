@@ -1,5 +1,5 @@
 require 'bundler/setup'
-require 'google/geolocation'
+require 'google/geocoding'
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
