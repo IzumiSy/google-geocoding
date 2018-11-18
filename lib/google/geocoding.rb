@@ -29,7 +29,9 @@ module Google
 
       # TODO needs better exception handling for Faraday using a custom middleware
       def lookup(arg)
-        raise ArgumentError, 'lookup method requires :api_key (Make sure if you have configured that)' unless config.api_key
+        unless config.api_key
+          raise ArgumentError, 'lookup method requires :api_key (Make sure if you have configured that)'
+        end
 
         request_url =
           case arg
@@ -82,7 +84,9 @@ module Google
       def parse_response(response)
         jsonified_body = JSON.parse(response.body)
 
-        raise RequestError, jsonified_body['error_message'] if jsonified_body['status'] == 'REQUEST_DENIED'
+        if jsonified_body['status'] == 'REQUEST_DENIED'
+          raise RequestError, jsonified_body['error_message']
+        end
 
         results = jsonified_body['results']
         results.map do |result|
