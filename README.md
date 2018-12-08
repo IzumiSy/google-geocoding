@@ -1,6 +1,5 @@
 # Google::Geocoding
-
-TODO
+[![CircleCI](https://circleci.com/gh/IzumiSy/google-geocoding.svg?style=svg)](https://circleci.com/gh/IzumiSy/google-geocoding)
 
 ## Installation
 ```ruby
@@ -9,7 +8,7 @@ gem 'google-geocoding'
 
 ## Usage
 
-TODO: Write usage instructions here
+See specs
 
 ## Development
 
